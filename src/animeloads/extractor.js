@@ -2,11 +2,11 @@
 /**
  * AnimeLoads DE
  * Stream-Extractor
- *
- * Priorität:
- * 1. GER Dub
- * 2. GER Sub
  */
+
+import {
+    getAnimeLoadsCandidates
+} from './titles.js';
 
 function sortStreamsByLanguage(streams) {
     const priority = {
@@ -14,11 +14,9 @@ function sortStreamsByLanguage(streams) {
         "GER Sub": 1
     };
 
-    return streams.sort((a, b) => {
-        const aPriority = priority[a.language] ?? 99;
-        const bPriority = priority[b.language] ?? 99;
-
-        return aPriority - bPriority;
+    return [...streams].sort((a, b) => {
+        return (priority[a.language] ?? 99)
+             - (priority[b.language] ?? 99);
     });
 }
 
@@ -35,14 +33,22 @@ export async function extractStreams(
         episode
     });
 
-    if (!tmdbId) {
-        return [];
-    }
+    if (!tmdbId) return [];
 
-    // Hier folgt die Suche nach Anime und Episoden.
+    // Die TMDB-Titelabfrage wird im
+    // nächsten Schritt angebunden.
+    const titles = [];
+
+    const candidates =
+        getAnimeLoadsCandidates(titles);
+
+    console.log(
+        "[AnimeLoads] Mögliche Titel:",
+        candidates
+    );
+
+    // Noch keine verifizierten Videoquellen.
     const streams = [];
 
-    // GER Dub zuerst, GER Sub danach.
     return sortStreamsByLanguage(streams);
 }
-
