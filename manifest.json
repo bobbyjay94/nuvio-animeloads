@@ -1,25 +1,28 @@
+
 [
   {
-    "id": "template-provider",
-    "name": "Template Provider",
-    "description": "A starter template for creating Nuvio providers.",
+    "id": "animeloads",
+    "name": "AnimeLoads DE",
+    "description": "Deutscher Anime-Provider in Entwicklung",
     "version": "1.0.0",
-    "author": "Your Name",
+    "author": "bobbyjay94",
     "supportedTypes": [
       "movie",
       "tv"
     ],
-    "filename": "providers/template.js",
+    "filename": "providers/animeloads.js",
     "enabled": false,
     "logo": "",
     "contentLanguage": [
-      "en"
+      "de",
+      "ja"
     ],
     "formats": [
       "mp4",
-      "mkv"
+      "mkv",
+      "m3u8"
     ],
-    "limited": false,
+    "limited": true,
     "disabledPlatforms": [],
     "supportsExternalPlayer": true
   }
